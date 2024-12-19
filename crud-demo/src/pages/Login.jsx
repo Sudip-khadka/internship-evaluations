@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router'
 import styled from 'styled-components'
 const Container=styled.div`
 width:100%;
@@ -33,8 +34,14 @@ function Login() {
       const user=  JSON.parse(localStorage.getItem('user'));
       console.log(user)
     },[])
+    const navigate=useNavigate();
     const handleLogin=()=>{
-
+        if(user.email==email && user.password==password){
+            navigate("/dashboard");
+        }
+        else{
+            alert("User Not found")
+        }
     }
   return (
     <Container>
